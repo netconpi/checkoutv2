@@ -1,0 +1,279 @@
+
+/* OpenSans */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
+
+body {
+    all: unset;
+    font-family: 'Open Sans';
+    font-style: normal;
+}
+
+/* BG */
+.calculator {
+    background-color: #F3F4F8;
+}
+
+/* Main container */
+.splitter_container {
+    margin: 0 auto;
+    max-width: 1050px;
+    padding: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+/* Main container blocks */
+.content_block {
+    width: 70%;
+}
+
+.checkout_main_price {
+    width: 30%;
+}
+
+/* Inputs */
+input, select {
+    all: unset;
+}
+
+.two_fields {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.input_title {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    text-transform: uppercase;
+    color: #C0C0C0;
+    margin: 0;
+}
+
+.two_fields_element {
+    width: 50%;
+    padding: 10px;
+}
+
+.selector_content {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 27px;
+
+    color: #000000;
+
+    background: #FFFFFF;
+    position: relative;
+    border: 1px solid #DBDBDB;
+    border-radius: 30px;
+    line-height: 40px;
+    padding: 0 45px 0 20px;
+    margin-top: 5px;
+    width: 100%;
+    box-sizing: border-box;
+
+    background-image: url('/arrow.svg');
+    background-repeat: no-repeat;
+    background-size: 42px;
+    background-position: 100.4%;
+}
+
+.selector_content:hover {
+    background-image: url('/hover.svg');
+}
+
+.selector_content:active {
+    background-image: url('/active.svg');
+}
+
+.new_styled_input {
+    background: #FFFFFF;
+    border: 1px solid #DBDBDB;
+    border-radius: 30px;
+    padding: 0 45px 0 20px;
+    margin-top: 5px;
+    width: 100%;
+    box-sizing: border-box;
+
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 40px;
+
+    color: #000000;
+}
+
+.sizes_m2 {
+    background-image: url('/metersinsq.svg');
+    background-repeat: no-repeat;
+    background-size: 42px;
+    background-position: 100.4%;
+}
+
+.sizes_km {
+    background-image: url('/kilometrs.svg');
+    background-repeat: no-repeat;
+    background-size: 42px;
+    background-position: 100.4%;
+}
+
+.block_positions {
+    background: #FAFAFA;
+    border: 1px solid #DBDBDB;
+    border-radius: 30px;
+    margin: 10px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+
+.bp_description {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 27px;
+    text-transform: uppercase;
+
+    color: #000000;
+    margin: 0;
+    box-sizing: border-box;
+    padding: 15px 20px 0px 20px;
+    margin-bottom: 15px;
+}
+
+.bp_element_name {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 27px;
+    margin: 0;
+    color: #000000;
+    width: 50%;
+    box-sizing: border-box;
+    padding: 0 20px 0 20px;
+}
+
+.bp_element_price {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    margin: 0;
+    color: #D7D7D7;
+    padding: 0 20px 0 20px;
+    width: 25%;
+    box-sizing: border-box;
+}
+
+.bp_elem_amount {
+    margin: 0;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #000000;
+    width: 50%;
+    text-align: center;
+}
+
+.bp_element_ctrl {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 25%;
+    box-sizing: border-box;
+    padding: 0 20px 0 20px;
+}
+
+.bp_element {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    border-bottom: 1px #ECECEC solid;
+    margin-bottom: 10px;
+}
+
+.bp_element_ctrl img {
+    width: 24px;
+    height: 24px;
+}
+
+.bp_element:nth-last-child(1) {
+    margin-bottom: 10px;
+    border: unset;
+}
+
+.checkout_price_card {
+    width: 100%;
+    height: 210px;
+    background: #FF6C0A;
+    border: 1px solid #D9D9D9;
+    box-shadow: 5px 20px 20px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 30px;
+    position: sticky;
+    top: 40px;
+    box-sizing: border-box;
+}
+
+.checkout_price_card_text {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 25px;
+    color: rgba(255, 255, 255, 0.8);
+
+    margin-top: 26px;
+    margin-left: 26px;
+    margin-bottom: 0px;
+}
+
+.checkout_price_card_price {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 58px;
+    color: #FFFFFF;
+
+    margin-top: 0px;
+    margin-left: 26px;
+    margin-bottom: 0px;
+}
+
+.checkout_price_card_btn_container {
+    width: 80%;
+    height: 60px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 20px -2px rgba(0, 0, 0, 0.05);
+    border-radius: 30px;
+    margin: 0 auto;
+    margin-top: 15px;
+}
+
+.checkout_price_card_btn_text {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 25px;
+    color: #FF6C0A;
+
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+    padding-top: 16px;
+    padding-bottom: 15px;
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>Calc v2</title>
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <section class="calculator">
+        <div class="splitter_container">
+
+            <div class="content_block" id="content_wrapper">
+                
+                <div class="two_fields">
+                    <div class="two_fields_element">
+                        <p class="input_title">
+                            Вид помещения 
+                        </p>
+                        <select name="space_type" id="space_type" class="selector_content">
+                            <option value="appartm" class="styled_info_box_content" selected>Квартира</option>
+                            <option value="house" class="styled_info_box_content">Коттедж или дом</option>
+                            <option value="wood_house" class="styled_info_box_content">Деревянный дом</option>
+                            <option value="office" class="styled_info_box_content">Офис</option>
+                            <option value="commer_space" class="styled_info_box_content">Коммерческое помещение</option>
+                        </select>
+                    </div>
+                    <div class="two_fields_element">
+                        <p class="input_title">
+                            Вид уборки
+                        </p>
+                        <select name="space_type" id="clean_type" class="selector_content">
+                            <option value="regular" class="styled_info_box_content" selected>Поддерживающая</option>
+                            <option value="general" class="styled_info_box_content">Генеральная</option>
+                            <option value="after_rem" class="styled_info_box_content">После ремонта</option>
+                            <option value="vip" class="styled_info_box_content">Vip-уборка</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="two_fields">
+                    <div class="two_fields_element">
+                        <p class="input_title">
+                            площадь помещения
+                        </p>
+                        <input class="new_styled_input sizes_m2" value="30" id="place_sqrs">
+                    </div>
+                    <div class="two_fields_element">
+                        <p class="input_title">
+                            Выезд за МКАД
+                        </p>
+                        <input class="new_styled_input sizes_km" value="Без выезда" id="mkad_distance">
+                    </div>
+                </div>  
+
+            </div>
+
+            <div class="checkout_main_price">
+                <div class="checkout_price_card">
+                    <div class="mobile_row_total">
+                        <h3 class="checkout_price_card_text">К оплате</h3>
+                        <h1 class="checkout_price_card_price" id="payment">2800₽</h1>
+                    </div>
+    
+                    <div class="checkout_price_card_btn_container" id="make_order">
+                        <p class="checkout_price_card_btn_text" onclick="send_form()" id="send_from_tg">Оформить</p>
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="/calc.js"></script>
+    <script>
+        let calc = new Logic;
+        calc.calculator();
+    </script>
+
+</body>
+</html>
