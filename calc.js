@@ -42,11 +42,11 @@ class PageDrawer {
         if (generate == 'windows') {
             text.insertAdjacentText('afterbegin', 'Мытье окон');
             win_block_wrapper.appendChild(text);
-            win_block_wrapper = this.create_blocks(win_block_wrapper, this.windows, this.win_len);
+            win_block_wrapper = this.create_blocks(win_block_wrapper, this.windows, this.win_len, 'windows');
         } else if (generate == 'furniture') {
             text.insertAdjacentText('afterbegin', 'Химчитска мебели');
             win_block_wrapper.appendChild(text);
-            win_block_wrapper = this.create_blocks(win_block_wrapper, this.furniture, this.fun_len);
+            win_block_wrapper = this.create_blocks(win_block_wrapper, this.furniture, this.fun_len, 'furniture');
         }
 
         // Final insert to content box
@@ -54,7 +54,7 @@ class PageDrawer {
         to_insert.append(win_block_wrapper);
     };
 
-    create_blocks(parent_node, input_dict, dict_len) {
+    create_blocks(parent_node, input_dict, dict_len, typee) {
         // Create blocks 
         for (let item = 0; item < dict_len; item++) {
             let block = document.createElement("div");
@@ -69,9 +69,9 @@ class PageDrawer {
                     ${input_dict[item][1]}₽/окно
                 </p>
                 <div class="bp_element_ctrl">
-                    <img src="/minus.svg" alt="" class="bp_elem_remove">
-                    <p class="bp_elem_amount">0</p>
-                    <img src="/plus.svg" alt="" class="bp_elem_add">
+                    <img src="/minus.svg" class="bp_elem_remove" onclick="update('min', '${typee}_${item}')">
+                    <p class="bp_elem_amount" id="${typee}_${item}" onchange="change()">0</p>
+                    <img src="/plus.svg" class="bp_elem_add" onclick="update('add', '${typee}_${item}')">
                 </div>
             `);
             parent_node.appendChild(block);
@@ -85,10 +85,10 @@ class PageDrawer {
 class Logic {
 
     constructor() {
-        this.space_type = document.getElementById('space_type');
-        this.clean_type = document.getElementById('clean_type');
-        this.floor_area = document.getElementById('place_sqrs');
-        this.from_moscow = document.getElementById('mkad_distance');
+        this.space_type = document.querySelector('#space_type');
+        this.clean_type = document.querySelector('#clean_type');
+        this.floor_area = document.querySelector('#place_sqrs');
+        this.from_moscow = document.querySelector('#mkad_distance');
     };
 
     calculator() {
@@ -100,11 +100,35 @@ class Logic {
     };
 
     updates() {
-
+        // When user click on all elements in calc
+        this.checkout();
     };
 
     checkout() {
-
+        let price = 0;
     };
 
 }
+
+// Update values by click on plus/minus. Separeted, call from HTML
+function update(action, element_id) {
+    let elem_dom = document.getElementById(element_id);
+    if (action == 'add') {
+        if (parseInt(elem_dom.innerText) < 99) {
+            elem_dom.innerText = parseInt(elem_dom.innerText) + 1;
+        }
+    } else if (action == 'min') {
+        if (parseInt(elem_dom.innerText) > 0) {
+            elem_dom.innerText = parseInt(elem_dom.innerText) - 1;
+        }
+    }
+}
+
+// Init work
+let calc = new Logic;
+calc.calculator();
+
+// DO NOT USE THIS 
+let main_block = document.querySelector('#main_container_splitter');
+main_block.addEventListener('click', e => { calc.updates(); });
+// USE ONCHANGE 
