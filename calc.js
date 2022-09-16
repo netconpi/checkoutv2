@@ -313,10 +313,12 @@ class PageDrawer {
             block.setAttribute('id', `element_${typee}_${item}`)
 
             let name = input_dict[item]['name'];
+            let price;
+            console.log(input_dict[item]['price'].hasOwnProperty('after_rec'))
             if (clean_type == 'after_rec' && input_dict[item]['price'].hasOwnProperty('after_rec')) {
-                let price = input_dict[item]['price']['after_rec'];
+                price = input_dict[item]['price']['after_rec'];
             } else {
-                let price = input_dict[item]['price']['all'];
+                price = input_dict[item]['price']['all'];
             }
 
             block.insertAdjacentHTML(
