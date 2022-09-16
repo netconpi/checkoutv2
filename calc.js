@@ -2,37 +2,260 @@
 class PageDrawer {
 
     constructor() {
+
         this.windows = {
-            0: ['Одностворчатое окно', '300'],
-            1: ['Двухстворчатое окно', '350'],
-            2: ['Трёхстворчатое окно', '400'],
-            3: ['Мойка лоджий и балконов', '450'],
-            4: ['Мойка оконного блока', '500'],
-            5: ['Балконное остекление', '1200'],
-        };
+            0: {
+                'name': 'Одностворчатое окно',
+                'price': {
+                    'all': 300,
+                    'after_rec': 350,
+                },
+                'dementions': 'окно', 
+                'exclude_clen_types': [],
+            },
+            1: {
+                'name': 'Двухстворчатое окно',
+                'price': {
+                    'all': 600,
+                    'after_rec': 700,
+                },
+                'dementions': 'окно', 
+                'exclude_clen_types': [],
+            },
+            2: {
+                'name': 'Трёхстворчатое окно',
+                'price': {
+                    'all': 900,
+                    'after_rec': 1050,
+                },
+                'dementions': 'окно', 
+                'exclude_clen_types': [],
+            },
+            3: {
+                'name': 'Мойка лоджий и балконов',
+                'price': {
+                    'all': 2400,
+                    'after_rec': 2800,
+                },
+                'dementions': 'окно', 
+                'exclude_clen_types': [],
+            },
+            4: {
+                'name': 'Мойка оконного блока',
+                'price': {
+                    'all': 1400,
+                    'after_rec': 1400,
+                },
+                'dementions': 'окно', 
+                'exclude_clen_types': [],
+            },
+            5: {
+                'name': 'Балконное остекление',
+                'price': {
+                    'all': 700,
+                    'after_rec': 700,
+                },
+                'dementions': 'окно', 
+                'exclude_clen_types': [],
+            },
+        }
+
         this.furniture = {
-            0: ['Диван 2 посадочных места', '300'],
-            1: ['Диван 3 посадочных места', '350'],
-            2: ['Диван 4 посадочных места', '400'],
-            3: ['Диван 5 посадочных места', '450'],
-            4: ['Стул', '500'],
-            5: ['Кресло', '1200'],
-            6: ['Пуф', '1200'],
-            7: ['Диванная подушка большая', '1200'],
-            8: ['Диванная подушка малая', '1200'],
-            9: ['Ковер синтетический', '1200'],
-            10: ['Ковер натуральный', '1200'],
-            11: ['Ковролин', '1200'],
-        };
+            0: {
+                'name': 'Диван 2 посадочных мест',
+                'price': {
+                    'all': 2600,
+                },
+                'dementions': 'диван', 
+                'exclude_clen_types': [],
+            },
+            1: {
+                'name': 'Диван 3 посадочных мест',
+                'price': {
+                    'all': 3600,
+                },
+                'dementions': 'диван', 
+                'exclude_clen_types': [],
+            },
+            2: {
+                'name': 'Диван 4 посадочных мест',
+                'price': {
+                    'all': 4800,
+                },
+                'dementions': 'диван', 
+                'exclude_clen_types': [],
+            },
+            3: {
+                'name': 'Диван 5 посадочных мест',
+                'price': {
+                    'all': 5600,
+                },
+                'dementions': 'диван', 
+                'exclude_clen_types': [],
+            },
+            4: {
+                'name': 'Стул',
+                'price': {
+                    'all': 500,
+                },
+                'dementions': 'стул', 
+                'exclude_clen_types': [],
+            },
+            5: {
+                'name': 'Кресло',
+                'price': {
+                    'all': 1000,
+                },
+                'dementions': 'окно', 
+                'exclude_clen_types': [],
+            },
+            6: {
+                'name': 'Пуф',
+                'price': {
+                    'all': 1200,
+                },
+                'dementions': 'окно', 
+                'exclude_clen_types': [],
+            },
+            7: {
+                'name': 'Диванная подушка большая',
+                'price': {
+                    'all': 500,
+                },
+                'dementions': 'подушка', 
+                'exclude_clen_types': [],
+            },
+            8: {
+                'name': 'Диванная подушка малая',
+                'price': {
+                    'all': 200,
+                },
+                'dementions': 'подушка', 
+                'exclude_clen_types': [],
+            },
+            9: {
+                'name': 'Ковер синтетический',
+                'price': {
+                    'all': 200,
+                },
+                'dementions': 'м', 
+                'exclude_clen_types': [],
+            },
+            10: {
+                'name': 'Ковер натуральный',
+                'price': {
+                    'all': 250,
+                },
+                'dementions': 'м', 
+                'exclude_clen_types': [],
+            },
+            11: {
+                'name': 'Ковролин',
+                'price': {
+                    'all': 20,
+                },
+                'dementions': 'м', 
+                'exclude_clen_types': [],
+            },
+        }
+
+        this.additional = {
+            0: {
+                'name': 'Шторы',
+                'price': {
+                    'all': 500,
+                },
+                'dementions': 'шт', 
+                'exclude_clen_types': [],
+            },
+            1: {
+                'name': 'Глажка',
+                'price': {
+                    'all': 800,
+                },
+                'dementions': 'час', 
+                'exclude_clen_types': [],
+            },
+            2: {
+                'name': 'Душевая кабина/Джакузи',
+                'price': {
+                    'all': 800,
+                },
+                'dementions': 'шт', 
+                'exclude_clen_types': [],
+            },
+            3: {
+                'name': 'Осветительные приборы',
+                'price': {
+                    'all': 500,
+                },
+                'dementions': 'шт', 
+                'exclude_clen_types': [],
+            },
+            4: {
+                'name': 'Холодильник',
+                'price': {
+                    'all': 800,
+                },
+                'dementions': 'шт', 
+                'exclude_clen_types': [],
+            },
+            5: {
+                'name': 'Микроволновая печь',
+                'price': {
+                    'all': 500,
+                },
+                'dementions': 'шт', 
+                'exclude_clen_types': [],
+            },
+            6: {
+                'name': 'Духовой шкаф',
+                'price': {
+                    'all': 500,
+                },
+                'dementions': 'шт', 
+                'exclude_clen_types': [],
+            },
+        }
+
+        this.delivery = {
+            0: {
+                'name': 'Доставка вышки-туры',
+                'price': {
+                    'all': 5000,
+                },
+                'dementions': '1 ед.', 
+                'exclude_clen_types': [],
+            },
+            1: {
+                'name': 'Доставка пылесоса',
+                'price': {
+                    'all': 500,
+                },
+                'dementions': '1 ед.', 
+                'exclude_clen_types': [],
+            },
+            2: {
+                'name': 'Доставка стремянки',
+                'price': {
+                    'all': 800,
+                },
+                'dementions': '1 ед.', 
+                'exclude_clen_types': [],
+            },
+        }
+
         this.win_len = 6;
         this.fun_len = 12;
+        this.add_len = 7;
+        this.delivery_len = 3;
     };
 
     block(generate = 'windows') {
 
         // Create wrapper 
-        let win_block_wrapper = document.createElement("div");
-        win_block_wrapper.classList.add('block_positions');
+        let items_wrapper = document.createElement("div");
+        items_wrapper.classList.add('block_positions');
 
         // Create block title
         let text = document.createElement('p');
@@ -41,32 +264,68 @@ class PageDrawer {
         // Define
         if (generate == 'windows') {
             text.insertAdjacentText('afterbegin', 'Мытье окон');
-            win_block_wrapper.appendChild(text);
-            win_block_wrapper = this.create_blocks(win_block_wrapper, this.windows, this.win_len, 'windows');
+            items_wrapper.appendChild(text);
+            items_wrapper = this.create_blocks(
+                items_wrapper, 
+                this.windows, 
+                this.win_len, 
+                'windows'
+            );
         } else if (generate == 'furniture') {
             text.insertAdjacentText('afterbegin', 'Химчитска мебели');
-            win_block_wrapper.appendChild(text);
-            win_block_wrapper = this.create_blocks(win_block_wrapper, this.furniture, this.fun_len, 'furniture');
+            items_wrapper.appendChild(text);
+            items_wrapper = this.create_blocks(
+                items_wrapper, 
+                this.furniture, 
+                this.fun_len, 
+                'furniture'
+            );
+        } else if (generate == 'additional') {
+            text.insertAdjacentText('afterbegin', 'Дополнительные услуги');
+            items_wrapper.appendChild(text);
+            items_wrapper = this.create_blocks(
+                items_wrapper, 
+                this.additional, 
+                this.add_len, 
+                'additional'
+            );
+        } else if (generate == 'delivery') {
+            text.insertAdjacentText('afterbegin', 'Доставка оборудования');
+            items_wrapper.appendChild(text);
+            items_wrapper = this.create_blocks(
+                items_wrapper, 
+                this.delivery, 
+                this.delivery_len, 
+                'delivey'
+            );
         }
 
         // Final insert to content box
         let to_insert = document.getElementById('content_wrapper');
-        to_insert.append(win_block_wrapper);
+        to_insert.append(items_wrapper);
     };
 
-    create_blocks(parent_node, input_dict, dict_len, typee) {
+    create_blocks(parent_node, input_dict, dict_len, typee, clean_type = 'all') {
         // Create blocks 
         for (let item = 0; item < dict_len; item++) {
             let block = document.createElement("div");
             block.classList.add('bp_element');
+            block.setAttribute('id', `element_${typee}_${item}`)
+
+            let name = input_dict[item]['name'];
+            if (clean_type == 'after_rec' && input_dict[item]['price'].hasOwnProperty('after_rec')) {
+                let price = input_dict[item]['price']['after_rec'];
+            } else {
+                let price = input_dict[item]['price']['all'];
+            }
 
             block.insertAdjacentHTML(
                 'afterbegin', 
                 `<p class="bp_element_name">
-                    ${input_dict[item][0]}
+                    ${name}
                 </p>
                 <p class="bp_element_price">
-                    ${input_dict[item][1]}₽/окно
+                    ${price}₽/${input_dict[item]['dementions']}
                 </p>
                 <div class="bp_element_ctrl">
                     <img src="/minus.svg" class="bp_elem_remove" onclick="update('min', '${typee}_${item}')">
@@ -82,20 +341,22 @@ class PageDrawer {
 
 }
 
-class Logic {
+class Logic extends PageDrawer {
 
-    constructor() {
+    calculator() {
+
         this.space_type = document.querySelector('#space_type');
         this.clean_type = document.querySelector('#clean_type');
         this.floor_area = document.querySelector('#place_sqrs');
         this.from_moscow = document.querySelector('#mkad_distance');
-    };
 
-    calculator() {
+        this.price = 0;
+        this.min_price = 2800;
 
-        let drawer = new PageDrawer;
-        drawer.block('windows');
-        drawer.block('furniture');
+        this.block('windows');
+        this.block('furniture');
+        this.block('additional');
+        this.block('delivery');
 
     };
 
