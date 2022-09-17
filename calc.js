@@ -187,7 +187,7 @@ class PageDrawer {
                     'all': 800,
                 },
                 'dementions': 'шт', 
-                'exclude_clen_types': [],
+                'exclude_clen_types': ['after_rec'],
             },
             3: {
                 'name': 'Осветительные приборы',
