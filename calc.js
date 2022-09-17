@@ -405,7 +405,40 @@ class Logic extends PageDrawer {
     };
 
     main_parametrs_change (change_id) {
-        
+
+        if (change_id == 'clean_type') {
+
+            for (let item = 0; item < this.displayed_cards.length; item++) {
+                let block = document.getElementById(this.displayed_cards[item]);
+                
+                try {
+                    block.remove();
+                } catch (TypeError) {
+                    console.log('already removed');
+                }
+            };
+
+            if (!(this.clean_type.value == 'vip' || this.clean_type.value == 'contract')) {
+                this.block(this.displayed_cards[0], 'windows', this.clean_type.value);
+                this.block(this.displayed_cards[1], 'furniture', this.clean_type.value);
+                this.block(this.displayed_cards[2], 'additional', this.clean_type.value);
+                this.block(this.displayed_cards[3], 'delivery', this.clean_type.value);
+            } else {
+                console.log('vip clean')
+            };
+
+        } else if (change_id == 'space_type') {
+            let element = document.getElementById('change_it_clean');
+            if (this.space_type.value == 'office' || this.space_type.value == 'commer_space') {
+                element.setAttribute('value', 'contract');
+                element.innerText = "Контракт";
+            } else {
+                element.setAttribute('value', 'vip');
+                element.innerText = "VIP-Уборка";
+            }
+        }
+
+
     }
 
     checkout() {
