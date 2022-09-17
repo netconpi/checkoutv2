@@ -314,7 +314,6 @@ class PageDrawer {
 
             let name = input_dict[item]['name'];
             let price;
-            console.log(input_dict[item]['price'].hasOwnProperty('after_rec'))
             if (clean_type == 'after_rec' && input_dict[item]['price'].hasOwnProperty('after_rec')) {
                 price = input_dict[item]['price']['after_rec'];
             } else {
@@ -360,11 +359,23 @@ class Logic extends PageDrawer {
         this.block('additional');
         this.block('delivery');
 
+        this.selected_products = [];
+
     };
 
-    updates() {
-        // When user click on all elements in calc
-        this.checkout();
+    change(curr_amount, element_id) {
+
+        if (curr_amount == 0) {
+            var index = this.selected_products.indexOf(element_id);
+            if (index !== -1) {
+                this.selected_products.splice(index, 1);
+            }
+        } else {
+            if (!(this.selected_products.includes(element_id))) {
+                this.selected_products.push(element_id);
+            };
+        }
+
     };
 
     checkout() {
@@ -373,25 +384,27 @@ class Logic extends PageDrawer {
 
 }
 
-// Update values by click on plus/minus. Separeted, call from HTML
-function update(action, element_id) {
-    let elem_dom = document.getElementById(element_id);
-    if (action == 'add') {
-        if (parseInt(elem_dom.innerText) < 99) {
-            elem_dom.innerText = parseInt(elem_dom.innerText) + 1;
-        }
-    } else if (action == 'min') {
-        if (parseInt(elem_dom.innerText) > 0) {
-            elem_dom.innerText = parseInt(elem_dom.innerText) - 1;
-        }
-    }
-}
-
 // Init work
 let calc = new Logic;
 calc.calculator();
 
-// DO NOT USE THIS 
-let main_block = document.querySelector('#main_container_splitter');
-main_block.addEventListener('click', e => { calc.updates(); });
-// USE ONCHANGE 
+// Update values by click on plus/minus. Separeted, call from HTML
+function update(action, element_id) {
+
+    let elem_dom = document.getElementById(element_id);
+    let curr_amount = parseInt(elem_dom.innerText);
+    if (action == 'add') {
+        if (curr_amount < 99) {
+            elem_dom.innerText = curr_amount + 1;
+            curr_amount += 1;
+        }
+    } else if (action == 'min') {
+        if (curr_amount > 0) {
+            elem_dom.innerText = curr_amount - 1;
+            curr_amount -= 1;
+        }
+    }
+
+    calc.change(curr_amount, element_id)
+}
+
