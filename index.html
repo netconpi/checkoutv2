@@ -20,7 +20,7 @@
                         <p class="input_title">
                             Вид помещения 
                         </p>
-                        <select name="space_type" id="space_type" class="selector_content">
+                        <select name="space_type" id="space_type" class="selector_content" onchange="main_params_change('space_type');">
                             <option value="appartm" class="styled_info_box_content" selected>Квартира</option>
                             <option value="house" class="styled_info_box_content">Коттедж или дом</option>
                             <option value="wood_house" class="styled_info_box_content">Деревянный дом</option>
@@ -32,7 +32,7 @@
                         <p class="input_title">
                             Вид уборки
                         </p>
-                        <select name="space_type" id="clean_type" class="selector_content">
+                        <select name="space_type" id="clean_type" class="selector_content" onchange="main_params_change('clean_type');">
                             <option value="regular" class="styled_info_box_content" selected>Поддерживающая</option>
                             <option value="general" class="styled_info_box_content">Генеральная</option>
                             <option value="after_rem" class="styled_info_box_content">После ремонта</option>

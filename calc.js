@@ -1,6 +1,11 @@
 
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+}
+
 class PageDrawer {
 
+    // Just contains elements to be displayed 
     constructor() {
 
         this.windows = {
@@ -251,11 +256,15 @@ class PageDrawer {
         this.delivery_len = 3;
     };
 
-    block(generate = 'windows') {
+    // Main block generation control. 
+    // Pass important parametrs to create_block()
+    // And generate block and display it
+    block(block_id, generate = 'windows', clean_type = 'all') {
 
         // Create wrapper 
         let items_wrapper = document.createElement("div");
         items_wrapper.classList.add('block_positions');
+        items_wrapper.setAttribute('id', `${block_id}`)
 
         // Create block title
         let text = document.createElement('p');
@@ -269,7 +278,8 @@ class PageDrawer {
                 items_wrapper, 
                 this.windows, 
                 this.win_len, 
-                'windows'
+                'windows',
+                clean_type,
             );
         } else if (generate == 'furniture') {
             text.insertAdjacentText('afterbegin', 'Химчитска мебели');
@@ -278,7 +288,8 @@ class PageDrawer {
                 items_wrapper, 
                 this.furniture, 
                 this.fun_len, 
-                'furniture'
+                'furniture',
+                clean_type,
             );
         } else if (generate == 'additional') {
             text.insertAdjacentText('afterbegin', 'Дополнительные услуги');
@@ -287,7 +298,8 @@ class PageDrawer {
                 items_wrapper, 
                 this.additional, 
                 this.add_len, 
-                'additional'
+                'additional',
+                clean_type,
             );
         } else if (generate == 'delivery') {
             text.insertAdjacentText('afterbegin', 'Доставка оборудования');
@@ -296,7 +308,8 @@ class PageDrawer {
                 items_wrapper, 
                 this.delivery, 
                 this.delivery_len, 
-                'delivey'
+                'delivey',
+                clean_type,
             );
         }
 
@@ -305,36 +318,40 @@ class PageDrawer {
         to_insert.append(items_wrapper);
     };
 
+    // Method that creates elements in block
     create_blocks(parent_node, input_dict, dict_len, typee, clean_type = 'all') {
         // Create blocks 
         for (let item = 0; item < dict_len; item++) {
             let block = document.createElement("div");
             block.classList.add('bp_element');
-            block.setAttribute('id', `element_${typee}_${item}`)
+            block.setAttribute('id', `element_${typee}_${item}`);
 
             let name = input_dict[item]['name'];
             let price;
-            if (clean_type == 'after_rec' && input_dict[item]['price'].hasOwnProperty('after_rec')) {
-                price = input_dict[item]['price']['after_rec'];
+            if (input_dict[item]['price'].hasOwnProperty(clean_type)) {
+                price = input_dict[item]['price'][clean_type];
             } else {
                 price = input_dict[item]['price']['all'];
             }
 
-            block.insertAdjacentHTML(
-                'afterbegin', 
-                `<p class="bp_element_name">
-                    ${name}
-                </p>
-                <p class="bp_element_price">
-                    ${price}₽/${input_dict[item]['dementions']}
-                </p>
-                <div class="bp_element_ctrl">
-                    <img src="/minus.svg" class="bp_elem_remove" onclick="update('min', '${typee}_${item}')">
-                    <p class="bp_elem_amount" id="${typee}_${item}" onchange="change()">0</p>
-                    <img src="/plus.svg" class="bp_elem_add" onclick="update('add', '${typee}_${item}')">
-                </div>
-            `);
-            parent_node.appendChild(block);
+            if (!(input_dict[item]['exclude_clen_types'].includes(clean_type))) {
+                block.insertAdjacentHTML(
+                    'afterbegin', 
+                    `<p class="bp_element_name">
+                        ${name}
+                    </p>
+                    <p class="bp_element_price">
+                        ${price}₽/${input_dict[item]['dementions']}
+                    </p>
+                    <div class="bp_element_ctrl">
+                        <img src="/minus.svg" class="bp_elem_remove" onclick="update('min', '${typee}_${item}')">
+                        <p class="bp_elem_amount" id="${typee}_${item}">0</p>
+                        <img src="/plus.svg" class="bp_elem_add" onclick="update('add', '${typee}_${item}')">
+                    </div>
+                `);
+                parent_node.appendChild(block);
+            }
+
         };
 
         return parent_node;
@@ -351,13 +368,22 @@ class Logic extends PageDrawer {
         this.floor_area = document.querySelector('#place_sqrs');
         this.from_moscow = document.querySelector('#mkad_distance');
 
+        this.displayed_cards = [];
+
         this.price = 0;
         this.min_price = 2800;
 
-        this.block('windows');
-        this.block('furniture');
-        this.block('additional');
-        this.block('delivery');
+        if (space_type.value != 'office' && space_type.value != 'commer_space') {
+            this.displayed_cards.push(`windows_${getRandomInt(100)}`);
+            this.displayed_cards.push(`furniture_${getRandomInt(100)}`);
+            this.displayed_cards.push(`additional_${getRandomInt(100)}`);
+            this.displayed_cards.push(`delivery_${getRandomInt(100)}`);
+
+            this.block(this.displayed_cards[0], 'windows', this.clean_type.value);
+            this.block(this.displayed_cards[1], 'furniture', this.clean_type.value);
+            this.block(this.displayed_cards[2], 'additional', this.clean_type.value);
+            this.block(this.displayed_cards[3], 'delivery', this.clean_type.value);
+        }
 
         this.selected_products = [];
 
@@ -377,6 +403,10 @@ class Logic extends PageDrawer {
         }
 
     };
+
+    main_parametrs_change (change_id) {
+        
+    }
 
     checkout() {
         let price = 0;
@@ -406,5 +436,9 @@ function update(action, element_id) {
     }
 
     calc.change(curr_amount, element_id)
+}
+
+function main_params_change(changed_id) {
+    calc.main_parametrs_change(changed_id);
 }
 
