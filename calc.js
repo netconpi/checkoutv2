@@ -8,6 +8,42 @@ class PageDrawer {
     // Just contains elements to be displayed 
     constructor() {
 
+        this.fixed_price = {
+            'sq_clean': {
+                'appartm': {
+                    'regular': 60,
+                    'general': 110,
+                    'after_rec': 130,
+                    'vip': 500,
+                },
+                'house': {
+                    'regular': 60,
+                    'general': 110,
+                    'after_rec': 130,
+                    'vip': 500,
+                },
+                'wood_house': {
+                    'regular': 60,
+                    'general': 140,
+                    'after_rec': 160,
+                    'vip': 500,
+                },
+                'office': {
+                    'regular': 40,
+                    'general': 110,
+                    'after_rec': 130,
+                    'contract': 0,
+                },
+                'commer_space': {
+                    'regular': 60,
+                    'general': 110,
+                    'after_rec': 130,
+                    'contract': 0,
+                },
+            },
+            'mkad': 50,
+        }
+
         this.windows = {
             0: {
                 'name': 'Одностворчатое окно',
@@ -327,12 +363,7 @@ class PageDrawer {
             block.setAttribute('id', `element_${typee}_${item}`);
 
             let name = input_dict[item]['name'];
-            let price;
-            if (input_dict[item]['price'].hasOwnProperty(clean_type)) {
-                price = input_dict[item]['price'][clean_type];
-            } else {
-                price = input_dict[item]['price']['all'];
-            }
+            let price = this.returnElementPrice(input_dict, item);
 
             if (!(input_dict[item]['exclude_clen_types'].includes(clean_type))) {
                 block.insertAdjacentHTML(
@@ -386,6 +417,7 @@ class Logic extends PageDrawer {
         }
 
         this.selected_products = [];
+        this.checkout();
 
     };
 
@@ -401,6 +433,8 @@ class Logic extends PageDrawer {
                 this.selected_products.push(element_id);
             };
         }
+
+        this.checkout();
 
     };
 
@@ -438,12 +472,50 @@ class Logic extends PageDrawer {
             }
         }
 
+        this.selected_products = [];
+        this.checkout();
 
     }
 
+    returnElementPrice(input_dict, item) {
+        let price;
+        if (input_dict[item]['price'].hasOwnProperty(this.clean_type)) {
+            price = input_dict[item]['price'][this.clean_type];
+        } else {
+            price = input_dict[item]['price']['all'];
+        }
+
+        return price;
+    }
+
     checkout() {
-        // this.price += 
+        this.price = 0;
+        this.price += this.fixed_price['sq_clean'][this.space_type.value][this.clean_type.value] * this.floor_area.value;
+        for (let item in this.selected_products) {
+            console.log(this.selected_products[item]);
+            let element = document.getElementById(this.selected_products[item]);
+            let key_array = this.selected_products[item].split("_");
+            if (key_array[0] == 'windows') {
+                this.price += this.returnElementPrice(this.windows, key_array[1]) * parseInt(element.innerText);
+            } else if (key_array[0] == 'furniture') {
+                this.price += this.returnElementPrice(this.furniture, key_array[1]) * parseInt(element.innerText);
+            } else if (key_array[0] == 'additional') {
+                this.price += this.returnElementPrice(this.additional, key_array[1]) * parseInt(element.innerText);
+            } else if (key_array[0] == 'delivey') {
+                this.price += this.returnElementPrice(this.delivery, key_array[1]) * parseInt(element.innerText);
+            };
+        };
+
+        let price_user = document.getElementById('payment');
+
+        if (this.price > this.min_price) {
+            price_user.innerText = new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB', minimumFractionDigits: 0, }).format(this.price);
+        } else {
+            price_user.innerText = new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB', minimumFractionDigits: 0, }).format(this.min_price);
+        }
+
     };
+
 
 }
 
