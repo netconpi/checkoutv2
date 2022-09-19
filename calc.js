@@ -193,7 +193,7 @@ class PageDrawer {
             11: {
                 'name': 'Ковролин',
                 'price': {
-                    'all': 20,
+                    'all': 200,
                 },
                 'dementions': 'м', 
                 'exclude_clen_types': [],
@@ -479,8 +479,8 @@ class Logic extends PageDrawer {
 
     returnElementPrice(input_dict, item) {
         let price;
-        if (input_dict[item]['price'].hasOwnProperty(this.clean_type)) {
-            price = input_dict[item]['price'][this.clean_type];
+        if (input_dict[item]['price'].hasOwnProperty(this.clean_type.value)) {
+            price = input_dict[item]['price'][this.clean_type.value];
         } else {
             price = input_dict[item]['price']['all'];
         }
@@ -491,6 +491,7 @@ class Logic extends PageDrawer {
     checkout() {
         this.price = 0;
         this.price += this.fixed_price['sq_clean'][this.space_type.value][this.clean_type.value] * this.floor_area.value;
+        this.price += this.fixed_price['mkad'] * this.from_moscow.value;
         for (let item in this.selected_products) {
             console.log(this.selected_products[item]);
             let element = document.getElementById(this.selected_products[item]);
