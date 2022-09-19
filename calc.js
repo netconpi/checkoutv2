@@ -442,7 +442,7 @@ class Logic extends PageDrawer {
     }
 
     checkout() {
-        let price = 0;
+        // this.price += 
     };
 
 }
@@ -458,13 +458,13 @@ function update(action, element_id) {
     let curr_amount = parseInt(elem_dom.innerText);
     if (action == 'add') {
         if (curr_amount < 99) {
-            elem_dom.innerText = curr_amount + 1;
             curr_amount += 1;
+            elem_dom.innerText = curr_amount;
         }
     } else if (action == 'min') {
         if (curr_amount > 0) {
-            elem_dom.innerText = curr_amount - 1;
             curr_amount -= 1;
+            elem_dom.innerText = curr_amount;
         }
     }
 
