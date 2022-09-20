@@ -290,6 +290,14 @@ input, select {
         box-sizing: border-box;
         padding: 0 15px 0 15px;
     }
+    .checkout_price_card {
+        position: fixed;
+        top: unset;
+        bottom: 20px;
+        left: 0px;
+        width: calc(100vw/100*90);
+        margin: 0 calc((100vw - 100vw/100*90)/2);
+    }
 }
 
 @media (max-width: 590px) {
