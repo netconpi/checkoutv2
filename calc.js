@@ -1,3 +1,6 @@
+// TODO: Fix issue with not right calculation when
+// clean type was changed 
+
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
