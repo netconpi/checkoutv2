@@ -295,6 +295,66 @@ input, select {
 @media (max-width: 590px) {
     .input_title {
         font-size: 12px;
-        line-height: 20px;
+        line-height: 16px;
+    }
+    .selector_content {
+        font-size: 16px;
+        line-height: 30px;
+        background-size: 30px;
+        background-position: 100.6%;
+    }
+    .new_styled_input {
+        font-size: 16px;
+        line-height: 30px;
+        background-size: 30px;
+        background-position: 100.6%;
+    }
+    .bp_description {
+        font-size: 16px;
+        line-height: 22px;
+    }
+    .bp_element_name {
+        font-size: 16px;
+        line-height: 22px;
+    }
+    .bp_element_price {
+        font-size: 12px;
+        line-height: 15px;
+        margin: auto 0;
+    }
+    .bp_element_ctrl {
+        margin: auto 0;
+    }
+    .bp_element_ctrl img {
+        width: 16px;
+        height: 16px;
+    }
+    .bp_elem_amount {
+        font-size: 12px;
+        line-height: 16px;
+    }
+}
+
+@media (max-width: 470px) {
+    .two_fields {
+        flex-direction: column;
+    }
+    .two_fields_element {
+        box-sizing: border-box;
+        width: 100%;
+        padding: 0 10px 10px 10px;
+    }
+    .bp_element_price {
+        display: none;
+    }
+    .bp_element_name {
+        width: 75%;
+        padding: 0 5px 0 20px;
+    }
+    .bp_element_ctrl {
+        padding: 0 10px 0 5px;
+    }
+    .splitter_container {
+        padding: 10px 5px 10px 5px;
     }
 }
