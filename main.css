@@ -294,9 +294,48 @@ input, select {
         position: fixed;
         top: unset;
         bottom: 20px;
+        height: 170px;
         left: 0px;
         width: calc(100vw/100*90);
         margin: 0 calc((100vw - 100vw/100*90)/2);
+        height: fit-content;
+    }
+    .mobile_row_total {
+        display: flex;
+        flex-direction: row;
+        align-content: center;
+        justify-content: space-between;
+        box-sizing: border-box;
+        padding: 15px 0 0 0;
+        padding-top: 10px;
+    }
+    .checkout_price_card_text {
+        font-size: 12px;
+        line-height: 16px;
+        margin: 0;
+        padding: 0 20px 0 15px;
+        align-self: center;
+    }
+    .checkout_price_card_price {
+        font-size: 16px;
+        line-height: 30px;
+        margin: 0;
+        padding: 0 15px 0 0;
+        align-items: flex-end;
+    }
+    .checkout_price_card_btn_text {
+        font-size: 16px;
+        line-height: 30px;
+        line-height: 20px;
+    }
+    .checkout_price_card_btn_container {
+        height: fit-content;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .blank_space {
+        height: 70px;
+        width: 30px;
     }
 }
 
